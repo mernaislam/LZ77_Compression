@@ -4,9 +4,10 @@ public class LZ77Algorithm {
 
     public static void startMenu(){
         Scanner sc = new Scanner(System.in);
+        Compression c = new Compression();
         int x = sc.nextInt();
         switch (x){
-            case 1 -> System.out.println("Compression...");
+            case 1 -> c.compress();
             case 2 -> System.out.println("Decompression...");
             case 3 -> System.out.println("Thank you!");
             default -> {
