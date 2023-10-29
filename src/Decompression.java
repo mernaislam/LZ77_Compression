@@ -14,30 +14,25 @@ public class Decompression {
             String[] tags = input.split(">");
 
             for (int i = 0; i < tags.length; i++) {
-                String output = "";
-                pos = -1;
-                len = -1;
                 String currTag = tags[i];
+                currTag += ">";
+                String tag = currTag.substring(currTag.indexOf("<") + 1, currTag.indexOf(">"));
+                String[] attributes = tag.split(",");
+                pos = Integer.parseInt(attributes[0]);
+                len = Integer.parseInt(attributes[1]);
+                next = attributes[2].charAt(1);
 
-                for (int j = 0; j < currTag.length(); j++) {
-                    if (Character.isDigit(currTag.charAt(j))) {
-                        if (pos == -1)
-                            pos = currTag.charAt(j) - '0';
-                        else
-                            len = currTag.charAt(j) - '0';
-                    } else if (Character.isAlphabetic(currTag.charAt(j)))
-                        next = currTag.charAt(j);
-                }
                 if (pos == 0 && len == 0) {
-                    output += next;
+                    currWindow += next;
                 }
                 else {
                     int begin = currWindow.length() - pos;
-                    int end = begin + len;
-                    output += currWindow.substring(begin, end);
-                    output += next;
+                    for(int j = 0;j<len;j++){
+                        currWindow += currWindow.charAt(begin);
+                        begin++;
+                    }
+                    currWindow += next;
                 }
-                currWindow += output;
             }
         }
         return currWindow;
