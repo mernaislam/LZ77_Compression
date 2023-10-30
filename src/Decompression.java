@@ -17,7 +17,6 @@ public class Decompression {
                 String currTag = tags[i];
                 currTag += ">";
                 String tag = currTag.substring(currTag.indexOf("<") + 1, currTag.indexOf(">"));
-                System.out.print(tag);
                 String[] attributes = tag.split(",");
                 pos = Integer.parseInt(attributes[0]);
                 len = Integer.parseInt(attributes[1]);
@@ -30,12 +29,17 @@ public class Decompression {
                         begin++;
                     }
                 }
-                if(!next.equals("null"))
+                if(!next.equals("null") && !next.equals("~"))
                     currWindow += next;
-                if(next.equals("~"))
-                    currWindow += "\r";
+                if(next.equals("~")){
+                    System.out.print("ayhagaaaaa");
+                    currWindow += "\n";
+                }
             }
         }
+//        for (int i = 0; i < currWindow.length(); i++) {
+//            System.out.print(currWindow.charAt(i));
+//        }
         return currWindow;
     }
 }
