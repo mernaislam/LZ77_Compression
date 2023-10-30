@@ -12,7 +12,7 @@ public class Compression {
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter the filename to compress: ");
         String fileName = sc.next();
-        String fullPath = fileName + ".txt";
+        String fullPath = "LZ77_Compression/" + fileName + ".txt";
         Path path = Paths.get(fullPath);
 
         // start compress
@@ -74,7 +74,7 @@ public class Compression {
                 }
                 compressed += tag;
             }
-            String compressedFile = fileName + "_compressed.txt";
+            String compressedFile = "LZ77_Compression/" + fileName + "_compressed.txt";
             Path pathCompressed = Paths.get(compressedFile);
             Files.writeString(pathCompressed, compressed, StandardCharsets.UTF_8);
             System.out.println("File compressed successfully in " + compressedFile);
