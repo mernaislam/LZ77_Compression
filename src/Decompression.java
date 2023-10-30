@@ -32,14 +32,10 @@ public class Decompression {
                 if(!next.equals("null") && !next.equals("~"))
                     currWindow += next;
                 if(next.equals("~")){
-                    System.out.print("ayhagaaaaa");
                     currWindow += "\n";
                 }
             }
         }
-//        for (int i = 0; i < currWindow.length(); i++) {
-//            System.out.print(currWindow.charAt(i));
-//        }
         return currWindow;
     }
 }
