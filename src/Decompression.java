@@ -1,7 +1,7 @@
 public class Decompression {
     private int pos;
     private int len;
-    private char next;
+    private String next = "";
     private String currWindow = "";
     private String input = "";
 
@@ -10,7 +10,7 @@ public class Decompression {
     }
 
     public String decompress(){
-        if(input != "") {
+        if(!input.equals("")) {
             String[] tags = input.split(">");
 
             for (int i = 0; i < tags.length; i++) {
@@ -20,10 +20,11 @@ public class Decompression {
                 String[] attributes = tag.split(",");
                 pos = Integer.parseInt(attributes[0]);
                 len = Integer.parseInt(attributes[1]);
-                next = attributes[2].charAt(1);
+                next = attributes[2];
 
                 if (pos == 0 && len == 0) {
-                    currWindow += next;
+                    if(!next.equals("null"))
+                        currWindow += next;
                 }
                 else {
                     int begin = currWindow.length() - pos;
@@ -31,7 +32,8 @@ public class Decompression {
                         currWindow += currWindow.charAt(begin);
                         begin++;
                     }
-                    currWindow += next;
+                    if(!next.equals("null"))
+                        currWindow += next;
                 }
             }
         }
