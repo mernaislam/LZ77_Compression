@@ -17,24 +17,23 @@ public class Decompression {
                 String currTag = tags[i];
                 currTag += ">";
                 String tag = currTag.substring(currTag.indexOf("<") + 1, currTag.indexOf(">"));
+                System.out.print(tag);
                 String[] attributes = tag.split(",");
                 pos = Integer.parseInt(attributes[0]);
                 len = Integer.parseInt(attributes[1]);
                 next = attributes[2];
 
-                if (pos == 0 && len == 0) {
-                    if(!next.equals("null"))
-                        currWindow += next;
-                }
-                else {
+                if (pos != 0 || len != 0) {
                     int begin = currWindow.length() - pos;
-                    for(int j = 0;j<len;j++){
+                    for (int j = 0; j < len; j++) {
                         currWindow += currWindow.charAt(begin);
                         begin++;
                     }
-                    if(!next.equals("null"))
-                        currWindow += next;
                 }
+                if(!next.equals("null"))
+                    currWindow += next;
+                if(next.equals("~"))
+                    currWindow += "\r";
             }
         }
         return currWindow;
