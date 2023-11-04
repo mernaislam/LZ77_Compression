@@ -29,11 +29,8 @@ public class Decompression {
                         begin++;
                     }
                 }
-                if(!next.equals("null") && !next.equals("~"))
+                if(!next.equals("null"))
                     currWindow += next;
-                if(next.equals("~")){
-                    currWindow += "\n";
-                }
             }
         }
         return currWindow;

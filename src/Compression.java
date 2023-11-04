@@ -8,7 +8,6 @@ public class Compression {
         String searchWindow = "";
         int tagLength, pos, index;
         String compressed = "";
-        input = input.replace('\n', '~');
         for (int i = 0; i < input.length(); i++)
         {
             tagLength = 0;
